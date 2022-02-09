@@ -46,3 +46,10 @@ interface Hash{
 interface Permission{
     hash:string
 }
+
+interface Claim{
+    Key : string,
+    Value: string,
+}
+
+
