@@ -38,3 +38,4 @@ yarn-error.log*
 
 # ENV
 /dev.env
+/environment.config.json

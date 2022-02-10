@@ -52,4 +52,12 @@ interface Claim{
     Value: string,
 }
 
+interface SendEmail{
+    to: string
+    from: string
+    subject: string
+    text: string
+    html: string
+}
+
 

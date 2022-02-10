@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
-import 'dotenv/config'
+import env from '../environment.config.json'
+
 const salt_rounds = 10;
 
 export function Hash(plainText: string) : string{
@@ -12,24 +13,13 @@ export function Compare(plainText: string, hash: string) : Boolean{
 }
 
 export function Sign(claims : any, expiresInSeconds: number) : string | null{
-    var privateKey = process.env.RSA_256_PRIVATE_KEY;
-
-    if(privateKey){
-        return jwt.sign(claims, privateKey, {expiresIn : expiresInSeconds});
-    }
-
-    return null;
+    return jwt.sign(claims, env.SECURITY.RSA_256_KEY_PRIVATE, {expiresIn : expiresInSeconds});
 }
 
 export function Verify(token: string) : JwtPayload | VerifyErrors | null{
-    var privateKey = process.env.RSA_256_PRIVATE_KEY;
-
-    if (privateKey){
-        jwt.verify(token, privateKey, function(err, decoded) {
-            if (err) return err;
-            return decoded;
-        })
-    }
-
+    jwt.verify(token, env.SECURITY.RSA_256_KEY_PRIVATE, function(err, decoded) {
+        if (err) return err;
+        return decoded;
+    })
     return null;
 }
