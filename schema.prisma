@@ -1,8 +1,23 @@
 // schema.prisma
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL_DEVELOPMENT")
+}
 
 model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   email     String   @unique
+  username  String   @unique
+  role      Role     @default(USER)
+  verified  Boolean  @default(false)
+  password  String
   name      String?
+  surname   String? 
 }
+
+enum Role {
+  USER
+  ADMIN
+}
+
