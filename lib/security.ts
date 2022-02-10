@@ -17,6 +17,7 @@ export function Sign(claims : any, expiresInSeconds: number) : string | null{
     if(privateKey){
         return jwt.sign(claims, privateKey, {expiresIn : expiresInSeconds});
     }
+
     return null;
 }
 
@@ -29,5 +30,6 @@ export function Verify(token: string) : JwtPayload | VerifyErrors | null{
             return decoded;
         })
     }
+
     return null;
 }
