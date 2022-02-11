@@ -1,7 +1,7 @@
 // schema.prisma
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL_DEVELOPMENT")
+  url      = "mysql://root:Admin1001@localhost:3306/next_js_dev"
 }
 
 model User {
