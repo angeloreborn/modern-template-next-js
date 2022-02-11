@@ -8,6 +8,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.4.1",
     "@prisma/client": "^3.9.1",
     "@sendgrid/mail": "^7.6.1",
     "@types/bcrypt": "^5.0.0",
