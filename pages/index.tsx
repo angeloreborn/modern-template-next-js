@@ -20,16 +20,3 @@ const Home: NextPage<ISession> = (props: HomeProps) => {
 
 export default Home
 
-import {GetSession} from '../lib/backend/SessionManager'
-
-export async function getServerSideProps(context : GetServerSidePropsContext) {
-  let session = GetSession();
-  console.log(session);
-  return {
-    props: {
-      session: session
-    }, // will be passed to the page component as props
-  }
-}
-
-
