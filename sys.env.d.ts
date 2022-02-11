@@ -1,3 +1,6 @@
+interface ISession {
+    session: Session
+}
 interface Session extends Hash, AuthorizationClaims, User, Activity{ 
   user: User
   activity: Activity
@@ -56,7 +59,7 @@ interface SendEmail{
     to: string
     from: string
     subject: string
-    text: string
+    text?: string
     html: string
 }
 
