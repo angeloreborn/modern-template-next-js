@@ -1,6 +1,39 @@
 interface ISession {
     session: Session
 }
+
+interface AuthState{
+    token: string | null
+    authorized: Boolean
+}
+
+interface Auth{
+    token?: string
+    signDate?: number
+    expDate?: number
+}
+
+
+interface SharedProps extends ApplicationReadyState{
+    auth?: AuthState
+}
+
+interface ApplicationReadyState{
+    stateReady: Boolean
+}
+
+interface ISharedProps{
+    sharedProps: SharedProps
+    setSharedProps:  Dispatch<SetStateAction<SharedProps>>
+}
+
+interface ChildProps{
+    children?: any | string
+}
+
+
+
+
 interface Session extends Hash, AuthorizationClaims, User, Activity{ 
   user: User
   activity: Activity
@@ -12,6 +45,11 @@ interface User extends AuthorizationClaims, PermissionClaims{
     addresses?: Address[],
 }
 
+interface SessionState {
+    session: Session | null,
+    ready : Boolean 
+  }
+  
 interface AuthorizationClaims{
     authorizations: Authorization[]
 }
@@ -62,5 +100,6 @@ interface SendEmail{
     text?: string
     html: string
 }
+
 
 

@@ -1,22 +1,24 @@
-import type { GetServerSidePropsContext, NextPage } from 'next'
+import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
 import Link from 'next/link'
+import Authorize from '../Components/Security/Authorize'
 
-
-interface HomeProps extends ISession{
+interface HomeProps extends ISharedProps{
 
 }
-const Home: NextPage<ISession> = (props: HomeProps) => {
+const Home: NextPage<HomeProps> = (props: HomeProps) => {
 
   return (
-    <div>     
-      Not Hello
-      <Link href={"/Test"}>
-        <a>Helo</a>
-      </Link>
-  
-    </div>
+    <Authorize sharedProps={props.sharedProps} setSharedProps={props.setSharedProps}>     
+        Index
+    </Authorize>
   )
 }
 
 export default Home
+
+export async function getServerSideProps(context: GetServerSideProps) {
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+} 
 

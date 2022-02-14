@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
-import env from '../../environment.config.json'
+import env from '../environment.config.json'
 
 const salt_rounds = 10;
 
