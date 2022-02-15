@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, Dispatch, SetStateAction } from 'react'
+import React, { useEffect, Dispatch, SetStateAction } from 'react'
 import Loading from '../../pages/Loading'
 import Login from '../../pages/Login'
 import Page from '../Generic/Page'
@@ -17,7 +17,7 @@ interface AuthorizeProps extends ISharedProps, ChildProps {}
  * 
  */
 export default function Authorize(props: AuthorizeProps) {
-    useLayoutEffect(() => {
+    useEffect(() => {
         let authToken = localStorage.getItem("AUTHORIZATION3");
         props.setSharedProps<Dispatch<SetStateAction<SharedProps>>>({
             ...props.sharedProps, auth: {
