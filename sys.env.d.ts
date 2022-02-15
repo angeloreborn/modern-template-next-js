@@ -18,6 +18,12 @@ interface SharedProps extends ApplicationReadyState{
     auth?: AuthState
 }
 
+interface APIResponse<T>{
+    data: T,
+    status: number,
+    message: string, 
+}
+
 interface ApplicationReadyState{
     stateReady: Boolean
 }
