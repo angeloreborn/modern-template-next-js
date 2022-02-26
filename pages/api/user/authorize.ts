@@ -16,14 +16,12 @@ import {
 
 import { 
   AuthorizeRequest, 
-  AuthorizeResponse 
+  AuthorizeResponse, 
+  invalid_body,
+  invalid_credentials,
+  invalid_token
 } from './authorize.config'
 
-import { 
-  invalid_body, 
-  invalid_credentials, 
-  invalid_token 
-} from '../../../shared/errors/errors'
 
 export default async function handler(
   req: NextApiRequest,
@@ -56,10 +54,10 @@ export default async function handler(
     });
   }
 
-  let user = await prisma.sooma.findFirst({
+  let user = await prisma.user.findFirst({
     where: {
       username: body.token,
-      password: body.password   
+      password: body.password,   
     }
   })
 

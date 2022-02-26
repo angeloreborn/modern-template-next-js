@@ -1,4 +1,4 @@
-export const authorizePath = "/api/user/authorize";
+export const registerPath = "/api/user/register";
 
 export async function registerUser(url: string, req: RegisterRequest | undefined){
     const res = await fetch(url, {
@@ -9,6 +9,7 @@ export async function registerUser(url: string, req: RegisterRequest | undefined
 }
 
 export interface RegisterRequest{
+    email?: string,
     username?: string,
     password?: string,
     confirmedPassword?: string,
@@ -17,10 +18,21 @@ export interface RegisterRequest{
 }
 
 export interface RegisterResponse{
-    token: string
+    
 }
 
-export enum RegisterErrors{
-    USERNAME_EXISTS,
-    UNSAFE_PASSWORD
+export const registerErrors : RegisterErrors = {
+    registration_failed: {
+        Key: ErrorKey.INTERNAL,
+        Source: registerPath,
+        Message: "Registration Failed",
+        Priority: NextErrorPriority.HIGH_PRIORTY
+    }
 }
+
+
+
+export interface RegisterErrors{
+    registration_failed: NextError
+}
+

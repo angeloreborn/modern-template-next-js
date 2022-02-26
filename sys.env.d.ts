@@ -48,5 +48,21 @@ interface SendEmail{
     html: string
 }
 
+interface NextError{
+    Key : ErrorKey,
+    Message: string,
+    Source: string,
+    Priority: NextErrorPriority, 
+}
+
+enum NextErrorPriority{
+    HIGH_PRIORTY = 0,
+    MEDIUM_PRIORITY = 1,
+    LOW_PRIOTITY = 2,
+}
+enum ErrorKey{
+    INTERNAL
+}
+
 
 

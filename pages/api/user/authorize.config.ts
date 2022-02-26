@@ -16,3 +16,22 @@ export interface AuthorizeRequest{
 export interface AuthorizeResponse{
     token: string
 }
+
+export const invalid_token : NextError = {
+    Key: ErrorKey.INTERNAL,
+    Source: authorizePath,
+    Message: "Authorization Rejected: Invalid token was supplied",
+    Priority: NextErrorPriority.HIGH_PRIORTY
+}
+export const invalid_body : NextError = {
+    Key: ErrorKey.INTERNAL,
+    Source: authorizePath,
+    Message: "Post Error: Malformed body",
+    Priority: NextErrorPriority.HIGH_PRIORTY
+}
+export const invalid_credentials : NextError = {
+    Key: ErrorKey.INTERNAL,
+    Source: authorizePath,
+    Message: "Invalid Credentials: The supplied credentials could not be authorized",
+    Priority: NextErrorPriority.HIGH_PRIORTY
+}

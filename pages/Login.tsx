@@ -8,6 +8,7 @@ import Form from '../Components/Generic/Form'
 import { Box } from '@mui/system';
 import { Input, Button } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
+import Link from 'next/link'
 interface LoginProps extends ISharedProps{
 
 }
@@ -45,15 +46,21 @@ const Login: NextPage<LoginProps> = (props: LoginProps) => {
         <Form>
             <Input placeholder={"Username"} type={"username"}/>
             <Input placeholder={"Password"} type={"password"}/>
+            <LoadingButton
+              color="primary"
+              onClick={login}
+              loading={loading}
+              variant="contained"
+              type={"submit"}
+              >
+                Login
+              </LoadingButton>
         </Form>
-        <LoadingButton
-        color="secondary"
-        onClick={login}
-        loading={loading}
-        variant="contained"
-        >
-          Login
-        </LoadingButton>
+        
+
+        <Link href={"/Register"}>
+          <a>Register</a>
+        </Link>
     </Box>
   )
 }

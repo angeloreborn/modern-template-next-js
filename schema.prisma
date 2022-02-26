@@ -4,7 +4,7 @@ datasource db {
   url      = "mysql://root:Admin1001@localhost:3306/next_js_dev"
 }
 
-model sooma {
+model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   email     String   @unique
