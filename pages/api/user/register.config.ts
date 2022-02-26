@@ -11,7 +11,9 @@ export async function registerUser(url: string, req: RegisterRequest | undefined
 export interface RegisterRequest{
     username?: string,
     password?: string,
-    confirmedPassword?: string
+    confirmedPassword?: string,
+    agreeTOS?: boolean,
+    agreePrivacyPolicy?: boolean,
 }
 
 export interface RegisterResponse{
