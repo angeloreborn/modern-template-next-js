@@ -1,3 +1,5 @@
-import { PrismaClient } from "../../prisma/modern-template-next-js/generated/client";
 
-export default new PrismaClient();
+import { PrismaClient, User } from "../prisma/index";
+
+export const prisma = new PrismaClient();
+

@@ -21,7 +21,7 @@ export function Decode(token : string | null) : string | JwtPayload | null{
     return jwt.decode(token);
 }
 
-export function Verify(token: string | null) : JwtPayload | null{
+export function Verify(token: string | undefined) : JwtPayload | null{
     if (!token) return null;
     jwt.verify(token, env.SECURITY.RSA_256_KEY_PRIVATE, function(err, decoded) {
         if (err) return null;

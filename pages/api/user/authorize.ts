@@ -1,21 +1,73 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../../lib/Prisma'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
-type Data = {
-  name: string
-}
+import { 
+  JwtPayload 
+} from 'jsonwebtoken';
+
+import type { 
+  NextApiRequest, 
+  NextApiResponse 
+} from 'next'
+
+import { 
+  Verify 
+} from '../../../lib/Security';
+
+import { 
+  AuthorizeRequest, 
+  AuthorizeResponse 
+} from './authorize.config'
+
+import { 
+  invalid_body, 
+  invalid_credentials, 
+  invalid_token 
+} from '../../../shared/errors/errors'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<APIResponse<AuthorizeResponse>>
 ) {
-    prisma.user.findUnique({
-      where:{
-        
-      }
-    })
-  console.log("ok");
-  res.status(200).json({ name: 'John Toe' })
+  const prisma = new PrismaClient();
+  let body: AuthorizeRequest = req.body;
+
+  if (!body.username || !body.password && body.token) {
+    let tokenVerification: JwtPayload | null = Verify(body.token);
+    if (tokenVerification && body.token) {
+      res.status(200).json({
+        data: {
+          token: body.token,
+        } as AuthorizeResponse,
+        status: 200
+      });
+    }else{
+      res.status(401).json({
+        status: 401,
+        errors: [invalid_token]
+      })
+    }
+  } 
+  
+  if (!body.username || !body.password){
+    res.status(400).json({
+      errors: [invalid_body],
+      status: 400
+    });
+  }
+
+  let user = await prisma.sooma.findFirst({
+    where: {
+      username: body.token,
+      password: body.password   
+    }
+  })
+
+  if (!user){
+    res.status(401).json({
+      errors: [invalid_credentials],
+      status: 401
+    });
+  }
 
 }

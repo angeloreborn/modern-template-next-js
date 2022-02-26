@@ -8,13 +8,14 @@ import Form from '../Components/Generic/Form'
 import { Box } from '@mui/system';
 import { Input, Button } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
-interface LoginProps extends ISharedProps{
+
+interface RegisterProps extends ISharedProps{
 
 }
 
 
 
-const Login: NextPage<LoginProps> = (props: LoginProps) => {
+const Login: NextPage<RegisterProps> = (props: RegisterProps) => {
   const [username, setUsername] = useState<string>()
   const [password, setPassword] = useState<string>()
   const [loading, setLoading] = useState<boolean | undefined>(false);
@@ -45,9 +46,10 @@ const Login: NextPage<LoginProps> = (props: LoginProps) => {
         <Form>
             <Input placeholder={"Username"} type={"username"}/>
             <Input placeholder={"Password"} type={"password"}/>
+            <Input placeholder={"Confirm Password"} type={"password"}/>
         </Form>
         <LoadingButton
-        color="secondary"
+        color="primary"
         onClick={login}
         loading={loading}
         variant="contained"

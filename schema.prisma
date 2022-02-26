@@ -4,7 +4,7 @@ datasource db {
   url      = "mysql://root:Admin1001@localhost:3306/next_js_dev"
 }
 
-model User {
+model sooma {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   email     String   @unique
@@ -23,5 +23,4 @@ enum Role {
 
 generator app {
   provider = "prisma-client-js"
-  output = "./prisma"
 }
