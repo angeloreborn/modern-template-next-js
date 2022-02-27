@@ -22,6 +22,11 @@ const Login: NextPage<RegisterProps> = (props: RegisterProps) => {
     Value: default_string,
     Name: "Username"
   })
+  const [email, setEmail] = useState<NextInput<string>>({
+    ValidationFunctions: [_required_],
+    Value: default_string,
+    Name: "Email"
+  })
   const [password, setPassword] = useState<NextInput<string>>({
     ValidationFunctions: [_required_],
     Value: default_string,
@@ -41,6 +46,7 @@ const Login: NextPage<RegisterProps> = (props: RegisterProps) => {
        const response = await axios.post<any, AxiosResponse<RegisterResponse>, RegisterRequest>(registerPath, {
          username: username.Value,
          password: password.Value,
+         email: email.Value,
          confirmedPassword: confirmPassword.Value
        });
      } catch (error) {
@@ -57,6 +63,13 @@ const Login: NextPage<RegisterProps> = (props: RegisterProps) => {
           value={username.Value} 
           error={username.IsValid}
           onChange={(event : React.ChangeEvent<HTMLInputElement>) => handleString(event, username, setUsername)}/>
+
+        <Input 
+          placeholder={"Email"} 
+          type={"email"} 
+          value={email.Value} 
+          error={email.IsValid}
+          onChange={(event : React.ChangeEvent<HTMLInputElement>) => handleString(event, email, setEmail)}/>
 
         <Input  
           placeholder={"Password"} 
