@@ -1,0 +1,1 @@
+export let default_string : string = "";

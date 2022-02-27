@@ -1,3 +1,5 @@
+import { NextErrorKey, NextErrorPriority } from "../../../shared/enum";
+
 export const registerPath = "/api/user/register";
 
 export async function registerUser(url: string, req: RegisterRequest | undefined){
@@ -21,18 +23,16 @@ export interface RegisterResponse{
     
 }
 
-export const registerErrors : RegisterErrors = {
-    registration_failed: {
-        Key: ErrorKey.INTERNAL,
-        Source: registerPath,
-        Message: "Registration Failed",
-        Priority: NextErrorPriority.HIGH_PRIORTY
-    }
+export const register_new_user_failed : NextError = {
+    Key: NextErrorKey.INTERNAL,
+    Source: registerPath,
+    Message: "Registration Failed",
+    Priority: NextErrorPriority.HIGH_PRIORTY
 }
-
 
 
 export interface RegisterErrors{
     registration_failed: NextError
 }
+
 

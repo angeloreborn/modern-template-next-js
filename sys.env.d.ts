@@ -22,7 +22,7 @@ interface APIResponse<T>{
     data?: T,
     status: number,
     message?: string, 
-    errors?: Error[]
+    errors?: NextError[]
 }
 
 interface ApplicationReadyState{
@@ -55,14 +55,23 @@ interface NextError{
     Priority: NextErrorPriority, 
 }
 
-enum NextErrorPriority{
-    HIGH_PRIORTY = 0,
-    MEDIUM_PRIORITY = 1,
-    LOW_PRIOTITY = 2,
-}
-enum ErrorKey{
-    INTERNAL
+interface NextValidation<SourceType, ErrorType, ValidationFunction>{
+    SourceType : SourceType,
+    ErrorType : ErrorType,
+    Validation : Function 
 }
 
+type ValidationFunction = Function
 
 
+interface ValidationError {
+    Message?: string
+}
+
+interface NextInput<SourceType> {
+    Name: string,
+    Value? : SourceType,
+    ValidationFunctions? : Function[],
+    Errors?: ValidationError [] | null | undefined
+    IsValid? : boolean | undefined
+}
