@@ -1,22 +1,24 @@
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
 import { Dispatch, SetStateAction, useState } from 'react';
-import { NJS_AUTH_COOKIE } from "../client.config.json"
+import { NJS_AUTH_COOKIE } from "../../client.config.json"
 import useSWR from 'swr'
 import axios, { AxiosResponse } from 'axios'
-import Form from '../Components/Generic/Form'
+import Form from '../Generic/Form'
 import { Box } from '@mui/system';
 import { Input} from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { registerPath, RegisterRequest, RegisterResponse } from './api/user/register.config';
-import { _match_, _required_ } from './api/app.validation';
-import { handleString } from '../lib/Validate';
-import { default_string } from '../shared/consts';
+import { registerPath, RegisterRequest, RegisterResponse } from '../../pages/api/user/register.config';
+import { _match_, _required_ } from '../../pages/api/app.validation';
+import { handleString } from '../../lib/Validate';
+import { default_string } from '../../shared/consts';
 
 interface RegisterProps extends ISharedProps {
 
 }
 
-const Login: NextPage<RegisterProps> = (props: RegisterProps) => {
+import React from 'react'
+
+export default function Register(props: RegisterProps) {
   const [username, setUsername] = useState<NextInput<string>>({
     ValidationFunctions: [_required_],
     Value: default_string,
@@ -98,7 +100,3 @@ const Login: NextPage<RegisterProps> = (props: RegisterProps) => {
     </Box>
   )
 }
-
-
-
-export default Login

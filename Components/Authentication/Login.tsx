@@ -1,25 +1,23 @@
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
 import { Dispatch, SetStateAction, useState } from 'react';
-import { authorizeUser, AuthorizeResponse, authorizePath, AuthorizeRequest } from '../pages/api/user/authorize.config'
-import { NJS_AUTH_COOKIE } from "../client.config.json"
+import { authorizeUser, AuthorizeResponse, authorizePath, AuthorizeRequest } from '../../pages/api/user/authorize.config'
+import { NJS_AUTH_COOKIE } from "../../client.config.json"
 import useSWR from 'swr'
 import axios, { AxiosResponse } from 'axios'
-import Form from '../Components/Generic/Form'
+import Form from '../Generic/Form'
 import { Box } from '@mui/system';
 import { Input, Button } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Link from 'next/link'
-import { _required_ } from './api/app.validation';
-import { default_string } from '../shared/consts';
-import { handleString } from '../lib/Validate';
+import { _required_ } from '../../pages/api/app.validation';
+import { default_string } from '../../shared/consts';
+import { handleString } from '../../lib/Validate';
+
 interface LoginProps extends ISharedProps {
 
 }
 
-
-
-const Login: NextPage<LoginProps> = (props: LoginProps) => {
-
+export default function Login(props: LoginProps) {
   const [username, setUsername] = useState<NextInput<string>>({
     ValidationFunctions: [_required_],
     Value: default_string,
@@ -93,5 +91,3 @@ const Login: NextPage<LoginProps> = (props: LoginProps) => {
     </Box>
   )
 }
-
-export default Login
