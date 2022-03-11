@@ -17,7 +17,7 @@ interface AuthorizeProps extends ISharedProps, ChildProps {}
  * 
  */
 export default function Authorize(props: AuthorizeProps) {
-    useLayoutEffect(() => {
+    useEffect(() => {
         let authToken = localStorage.getItem("AUTHORIZATION");
         props.setSharedProps<Dispatch<SetStateAction<SharedProps>>>({
             ...props.sharedProps, auth: {

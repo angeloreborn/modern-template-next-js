@@ -2,11 +2,12 @@ import { NextErrorKey, NextErrorPriority } from "../../../shared/enum";
 
 export const authorizePath = "/api/user/authorize";
 
-export function authorizeUser(url: string, req: AuthorizeRequest | undefined){
-    return fetch(url, {
+export async function authorizeUser(url: string, req: AuthorizeRequest | undefined){
+    const res = await fetch(url, {
         method: "post",
         body: JSON.stringify(req),
-      }).then((res) => res.json());
+    });
+    return await res.json();
 }
 
 export interface AuthorizeRequest{

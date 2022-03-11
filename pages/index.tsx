@@ -8,9 +8,9 @@ interface HomeProps extends ISharedProps{
 const Home: NextPage<HomeProps> = (props: HomeProps) => {
 
   return (
-    <Authorize sharedProps={props.sharedProps} setSharedProps={props.setSharedProps}>     
-        Index
-    </Authorize>
+ 
+    <div>Index</div>
+
   )
 }
 

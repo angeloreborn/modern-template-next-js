@@ -54,11 +54,8 @@ const Login: NextPage<LoginProps> = (props: LoginProps) => {
       }
      
     } catch (error) {
-
+        
     }
-
-
-
   }
   return (
     <Box sx={{}}>

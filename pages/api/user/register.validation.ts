@@ -17,15 +17,4 @@ export const EmailValidationFunction : ValidationFunction = (email: string) : Va
     return validation_responses;
 }
 
-export const Required : ValidationFunction = (value: string | string | object | number) : ValidationError | undefined | null => {
-    if (typeof value === "string"){
-        if ( value != null && value.length > 0){
-            return null
-        }else{
-            return {
-                Message: "_value_ is required"
-            }
-        }
-    }
-}
 

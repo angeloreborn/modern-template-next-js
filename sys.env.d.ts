@@ -29,8 +29,8 @@ interface ApplicationReadyState{
     stateReady: Boolean
 }
 
-interface ISharedProps{
-    sharedProps: SharedProps
+interface ISharedProps {
+    sharedProps: SharedProps | undefined
     setSharedProps:  Dispatch<SetStateAction<SharedProps>>
 }
 
