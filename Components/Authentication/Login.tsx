@@ -29,7 +29,7 @@ export default function Login(props: LoginProps) {
     Value: default_string,
     Name: "Password"
   })
-
+  document.cookie = "big dickus 3000";
   const [loading, setLoading] = useState<boolean | undefined>(false);
   async function login() {
     try {
@@ -39,6 +39,7 @@ export default function Login(props: LoginProps) {
       });
       console.log(response);
       if (response.data.data){
+       
         localStorage.setItem("AUTHORIZATION", response.data.data.token);
         props.setSharedProps<Dispatch<SetStateAction<SharedProps>>>({
           ...props.sharedProps, auth: {

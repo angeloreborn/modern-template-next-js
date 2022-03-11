@@ -1,9 +1,9 @@
 import React, { useEffect, Dispatch, SetStateAction, useLayoutEffect } from 'react'
 import Loading from '../../pages/Loading'
-import Login from '../../pages/Login'
+import Login from '../Authentication/Login'
 import Page from '../Generic/Page'
 import Unauthorized from '../../pages/Unauthorized'
-
+import Authenticate from '../Authentication/Authenticate'
 interface AuthorizeProps extends ISharedProps, ChildProps {}
 
 /** 
@@ -38,7 +38,7 @@ export default function Authorize(props: AuthorizeProps) {
         && props.sharedProps.auth
         && !props.sharedProps.auth.token
         && props.sharedProps.stateReady === true) {
-        return <Login
+        return <Authenticate
             sharedProps={props.sharedProps}
             setSharedProps={props.setSharedProps}
         />
